@@ -1,9 +1,11 @@
 import java.io.*;
 
 public class FileManager {
+
     // 
-    // Razred s staticnimi metodami za shranjevanje na datoteke in nalaganje iz datotek
+    // Razred za shranjevanje na datoteke in nalaganje iz datotek
     //
+    
     public static void readFromFileUporabniki() throws Exception {
         BufferedReader br = new BufferedReader(new FileReader(Main.uporabnikiFilename));
         String s = "";

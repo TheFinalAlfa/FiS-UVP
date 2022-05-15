@@ -1,4 +1,10 @@
 public class Uporabnik extends Object{
+    
+    //
+    // Shranjuje osnovne podatke o uporabnikih in
+    // preverja pravilnost gesla
+    //
+    
     private static int steviloAdministratorjev = 0;
 
     private static int lastId = 0;

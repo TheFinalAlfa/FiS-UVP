@@ -1,4 +1,9 @@
 public class Datum{
+
+    //
+    // Razred datuma, njegovega prikazovanja, shranjevanja in primerjanja
+    //
+    
     public long year;
     public int mounth;
     public int day;

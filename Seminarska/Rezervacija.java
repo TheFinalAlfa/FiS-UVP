@@ -1,4 +1,9 @@
 public class Rezervacija {
+    
+    //
+    // Osnovni razred za shranjevanje in prikaz rezervacij
+    //
+
     private String usernameUporabnika;
     private int steviloOseb;
 

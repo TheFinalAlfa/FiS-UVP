@@ -2,6 +2,12 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 public class Termin {
+
+    //
+    // Razred za shranjevanje in prikaz terminov
+    // Shranjuje osnovne podatke in rezervacije, narejene na posameznem terminu
+    //
+
     private int id;
     private static int lastId = 0;
     private Datum prihod;

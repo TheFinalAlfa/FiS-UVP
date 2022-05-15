@@ -1,6 +1,6 @@
 public class Main {
     //
-    // Glavni uporabniski vnesnik. ki nato naprej kliče 
+    // Razred, ki nalozi podatke ob zagonu 
     //
 
     public static String uporabnikiFilename = "Seminarska/txt/uporabniki.txt";

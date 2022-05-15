@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class Vnesnik {
     //
-    // Razred, ki za odzivanja na vnos in spreminjanja podatke 
+    // Splosen uporabniski vnesnik, ki ima zelo omejeno funkcionalnost 
     //
 
     private Uporabnik prijavlenUporabnik;
@@ -19,7 +19,7 @@ public class Vnesnik {
         System.out.println("Za registracijo vnesite (r)");
         System.out.println("Za prijavo vnesite (p)");
         System.out.println("Za zakljucek vnesite (q)");
-    } 
+    }
 
     public void registrirati(BufferedReader bis) throws Exception{
         System.out.println("\nVnesite ime");
