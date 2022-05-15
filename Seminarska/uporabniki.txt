@@ -1,4 +1,0 @@
-Urh;Robic;ur;lol;false
-jozef;Novicka;Lepotec1;qwertz;true
-AdminIme;AdminPriimek;admin;admin;true
-userIme;userPriimek;user;user;false
