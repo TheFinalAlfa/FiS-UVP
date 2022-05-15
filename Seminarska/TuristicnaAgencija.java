@@ -22,7 +22,7 @@ public class TuristicnaAgencija  {
                 break mainLoop;
                 case "r":{
                     this.prijava.registrirati(bis);
-                    FileManager.writeToFileUporabniki("uporabniki.txt");
+                    FileManager.writeToFileUporabniki();
                     }
                 break;
                 case "p":{
@@ -40,12 +40,12 @@ public class TuristicnaAgencija  {
                 break;
                 case "b":{
                     this.prijava.brisiUporabnik(bis);
-                    FileManager.writeToFileUporabniki("uporabniki.txt");
+                    FileManager.writeToFileUporabniki();
                 }
                 break;
                 case "n":{
                     this.prijava.vnosNovihPocitnic(bis);
-                    FileManager.writeToFilePocitnice("pocitnice.txt");
+                    FileManager.writeToFilePocitnice();
                 }
                 break;
                 case "a":{
@@ -54,12 +54,12 @@ public class TuristicnaAgencija  {
                 break;
                 case "s":{
                     this.prijava.spremeniPocitnice(bis);
-                    FileManager.writeToFilePocitnice("pocitnice.txt");
+                    FileManager.writeToFilePocitnice();
                 }
                 break;
                 case "e":{
                     this.prijava.odstraniPocitnice(bis);
-                    FileManager.writeToFilePocitnice("pocitnice.txt");
+                    FileManager.writeToFilePocitnice();
                 }
                 break;
                 case "v":{
@@ -72,7 +72,7 @@ public class TuristicnaAgencija  {
                 break;
                 case "t":{
                     this.prijava.rezervirati(bis);
-                    FileManager.writeToFilePocitnice("pocitnice.txt");
+                    FileManager.writeToFilePocitnice();
                 }
                 break;
                 default:
