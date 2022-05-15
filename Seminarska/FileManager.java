@@ -37,8 +37,7 @@ public class FileManager {
         BufferedReader br = new BufferedReader(new FileReader(Main.pocitniceFilename));
         String s = "";
         while ((s = br.readLine()) != null){
-            Pocitnice pocitnice = new Pocitnice();
-            pocitnice.fromString(s);
+            Pocitnice.fromString(s);
         };
         br.close();
     }

@@ -50,7 +50,6 @@ public class Pocitnice {
     }
     
     public static void spremembeSporociloPocitnice(){
-        System.out.println("Za spremembo tipa vnesite (t)");
         System.out.println("Za spremembo maksimalnega stevila ljudi vnesite (m)");
         System.out.println("Za spremembo drzave vnesite (d)");
         System.out.println("Za spremembo cene vnesite (c)");
