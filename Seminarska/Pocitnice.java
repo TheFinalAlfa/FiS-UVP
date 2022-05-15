@@ -1,3 +1,4 @@
+import java.io.BufferedReader;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -43,8 +44,12 @@ public class Pocitnice {
             this.printAvailability(termin.getPrihod(), termin.getOdhod());
         }
     }
+
+    public void spremembeSporocilo(){
+        Pocitnice.spremembeSporociloPocitnice();
+    }
     
-    public static void spremembeSporocilo(){
+    public static void spremembeSporociloPocitnice(){
         System.out.println("Za spremembo tipa vnesite (t)");
         System.out.println("Za spremembo maksimalnega stevila ljudi vnesite (m)");
         System.out.println("Za spremembo drzave vnesite (d)");
@@ -52,6 +57,63 @@ public class Pocitnice {
         System.out.println("Za dodajanje termina vnesite (a)");
         System.out.println("Za odstranjevanje termina vnesite (r)");
         System.out.println("Za prenehanje sprememb vnesite (q)");
+    }
+
+    public boolean spremeni(String string, BufferedReader bis) throws Exception{
+        switch (string) {
+            case "m":{
+                System.out.println("Vnesite novo maksimalno stevilo ljudi");
+                this.setMaxOseb(Integer.parseInt(bis.readLine()));
+                return true;
+            }
+            case "d":{
+                System.out.println("Vnesite novo drzavo");
+                this.setDrzava(bis.readLine());
+                return true;
+            }
+            case "c":{
+                System.out.println("Vnesite novo ceno");
+                this.setCena(Integer.parseInt(bis.readLine()));
+                return true;
+            }
+            case "a":{
+                System.out.println("Vnesite leto prihoda");
+                long year = Long.parseLong(bis.readLine());
+                System.out.println("Vnesite mesec prihoda");
+                int mounth = Integer.parseInt(bis.readLine());
+                System.out.println("Vnesite dan prihoda");
+                int day = Integer.parseInt(bis.readLine());
+                System.out.println("Vnesite uro prihoda");
+                int hour = Integer.parseInt(bis.readLine());
+                
+                System.out.println("Vnesite leto odhoda");
+                long yearOdhoda = Long.parseLong(bis.readLine());
+                System.out.println("Vnesite mesec odhoda");
+                int mounthOdhoda = Integer.parseInt(bis.readLine());
+                System.out.println("Vnesite dan odhoda");
+                int dayOdhoda = Integer.parseInt(bis.readLine());
+                System.out.println("Vnesite uro odhoda");
+                int hourOdhoda = Integer.parseInt(bis.readLine());
+
+                Termin termin = new Termin(new Datum(year, mounth, day, hour),
+                    new Datum(yearOdhoda, mounthOdhoda, dayOdhoda, hourOdhoda));
+                this.addTermin(termin);
+                return true;
+            }
+            case "r":{
+                Iterator<Termin> iterTermin = this.getTermini();
+                while (iterTermin.hasNext()){
+                    iterTermin.next().printId();
+                }
+                System.out.println("Vnesite id zelenega termina");
+                int idTermin = Integer.parseInt(bis.readLine());
+                this.removeTermin(idTermin);
+                return true;
+            }
+            default:{
+                return false;
+            }
+        }
     }
     
     public void printPure(boolean isAdmin){
@@ -126,18 +188,47 @@ public class Pocitnice {
                 str += iter.next().toString();
             }
         };
+        str += ";";
         return str;
     }
 
-    public void fromString(String string){
+    public static void fromString(String string){
         String[] str = string.split(";");
-        this.type = str[0];
+        switch (str[0]){
+            case "Pocitnice":{
+                new Pocitnice(string);
+            }break;
+            case "Potovanje":{
+                new Potovanje(string);
+            }break;
+            case "Krizarjenje":{
+                new Krizarjenje(string);
+            }break;
+            case "Kampiranje":{
+                new Kampiranje(string);
+            }break;
+        }
+    }
+    
+    public Pocitnice(String string){
+        this.type = "Pocitnice";
+        this.id = Pocitnice.lastId;
+        Pocitnice.lastId++;
+        this.termini = new LinkedList<Termin>();
+        TuristicnaAgencija.pocitnice.add(this);
+        
+        String[] str = string.split(";");
         this.maxOseb = Integer.parseInt(str[1]);
         this.drzava = str[2];
         this.cena = Integer.parseInt(str[3]);
         if (str.length > 4){
-            str = str[4].split("~");
-            for (String terminRaw : str){
+            this.assignTermini(str[4]);
+        }
+    }
+
+    private void assignTermini(String string){
+        if (!(string.equals(""))){
+            for (String terminRaw : string.split("~")){
                 Termin termin = new Termin();
                 termin.fromString(terminRaw);
                 this.termini.add(termin);
