@@ -14,6 +14,7 @@ public class VnesnikAdmin extends VnesnikUporabnik{
         System.out.println("Za nov vnos pocitnic vnesite (n)");
         System.out.println("Za prikaz vseh uporabnikov ali pocitnic vnesite (a)");
         System.out.println("Za spreminanje pocitnic vnesite (s)");
+        System.out.println("Za iskanje pocitnic po ID vnesite (w)");
     } 
 
     @Override
@@ -143,13 +144,14 @@ public class VnesnikAdmin extends VnesnikUporabnik{
                             break loopSpreminjanje;
                         }
                         default:{
-                            if (!pocitnice.spremeni(vnos, bis)){}
-                            System.out.println("Napacen vnos");
+                            if (!pocitnice.spremeni(vnos, bis)){
+                                System.out.println("Napacen vnos");
+                            }
                         }
                     }
                 }
+                return;
             }
-            return;
         }
         System.out.println("Ta id ne obstaja");
     }

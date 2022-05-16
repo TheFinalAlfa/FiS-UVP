@@ -25,6 +25,9 @@ public class TuristicnaAgencija  {
                     FileManager.writeToFileUporabniki();
                     }
                 break;
+                case "w": {
+                    prijava.iskanjePocitnicId(bis);
+                } break;
                 case "p":{
                     // this.prijava
                     System.out.print("\nVnesite uporabnisko ime:\n");

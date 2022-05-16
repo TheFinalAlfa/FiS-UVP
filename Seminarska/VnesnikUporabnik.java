@@ -29,6 +29,12 @@ public class VnesnikUporabnik extends Vnesnik {
 
     @Override
     public void iskanje(BufferedReader bis) throws Exception{
+        Datum prihod = null;
+        Datum odhod = null;
+        int cenaZgornja = 0;
+        int cenaSpodnja = 0;
+        String drzava = null;
+        String type = null;
         loopIskanje:
         while (true) {
             System.out.println("Za iskanje po casovnem okviru vnesite (d)");
@@ -37,14 +43,7 @@ public class VnesnikUporabnik extends Vnesnik {
             System.out.println("Za iskanje po tipu pocitnic vnesite (t)");
             System.out.println("Za zacetek iskanja vnesite (a)");
             System.out.println("Za istop iz iskanja vnesite (q)");
-            Iterator<Pocitnice> iterator = TuristicnaAgencija.pocitnice.iterator();
-            Datum prihod = null;
-            Datum odhod = null;
-            int cenaZgornja = (Integer) null;
-            int cenaSpodnja = (Integer) null;
-            String drzava = null;
-            String type = null;
-            
+            System.out.println();
             switch (bis.readLine()){
                 case "d":{
                     System.out.println("Vnesite leto prihoda");
@@ -85,36 +84,35 @@ public class VnesnikUporabnik extends Vnesnik {
                 }
                 break;
                 case "a":{
-                    while (iterator.hasNext()){
-                        Pocitnice p = iterator.next();
-                        if (!(drzava != null && p.getDrzava().equals(drzava))){
-                            continue;
-                        }
-                        if (!(type != null && p.getType().equals(type))){
-                            continue;
-                        }
-                        if (!(cenaSpodnja != (Integer) null && 
-                                cenaZgornja != (Integer) null &&
-                                cenaSpodnja >= p.getCena() &&
-                                cenaZgornja <= p.getCena())){
-                            continue;
-                        }
-                        boolean avaible = false;
-                        if (!(odhod != null && prihod != null)){
-                            continue;
-                        }
-                        else {
-                            Iterator<Termin> iterTermin = p.getTermini();
-                            while (iterTermin.hasNext()){
-                                Termin termin = iterTermin.next();
-                                if (termin.getPrihod().before(prihod) && 
-                                    odhod.before(termin.getOdhod())){
-                                        avaible = true;
-                                    };
+                    if (prihod == null && odhod == null && cenaSpodnja == 0 && cenaZgornja == 0 && drzava == null && type == null){
+                        System.out.println("Vnesite vsaj eden kriterij");
+                    }
+                    else{
+                        for (Pocitnice p : TuristicnaAgencija.pocitnice){
+                            if (drzava != null && !(p.getDrzava().equals(drzava))){
+                                continue;
                             }
-                        }
-                        if (!(odhod != null && prihod != null) &&
-                                avaible){
+                            if (type != null && !(p.getType().equals(type))){
+                                continue;
+                            }
+                            if ((cenaSpodnja != 0 && cenaZgornja != 0 && !(cenaSpodnja >= p.getCena() && cenaZgornja <= p.getCena()))){
+                                continue;
+                            }
+                            boolean avaible = false;
+                            if (odhod != null && prihod == null){
+                                Iterator<Termin> iterTermin = p.getTermini();
+                                while (iterTermin.hasNext()){
+                                    Termin termin = iterTermin.next();
+                                    if (termin.getPrihod().before(prihod) && 
+                                        odhod.before(termin.getOdhod())){
+                                            avaible = true;
+                                            break;
+                                        };
+                                    }
+                                    if (!avaible){
+                                        continue;
+                                    }
+                                }
                             p.print(this.getPrijavlenUporabnik().getIsAdmin());
                         }
                     }

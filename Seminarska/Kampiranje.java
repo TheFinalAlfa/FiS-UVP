@@ -45,21 +45,33 @@ public class Kampiranje extends Pocitnice{
 
     @Override
     public boolean spremeni(String string, BufferedReader bis) throws Exception{
-        switch (string) {
-            case "o": {
-                System.out.println("Vnesite novo ime kampa");
-                this.imeKampa = bis.readLine();
-            }
+        if (super.spremeni(string, bis)){
             return true;
-            case "k": {
-                System.out.println("Vnesite novo oddaljenost od morja");
-                this.oddaljenostOdMorja = Long.parseLong(bis.readLine());
-            }
-            return true;
-            default:{
-                return false;
+        }
+        else{
+            switch (string) {
+                case "o": {
+                    System.out.println("Vnesite novo ime kampa");
+                    this.imeKampa = bis.readLine();
+                }
+                return true;
+                case "k": {
+                    System.out.println("Vnesite novo oddaljenost od morja");
+                    this.oddaljenostOdMorja = Long.parseLong(bis.readLine());
+                }
+                return true;
+                default:{
+                    return false;
+                }
             }
         }
+    }
+
+    @Override
+    public void printPure(boolean isAdmin){
+        super.printPure(isAdmin);
+        System.out.println("Ime kampa: " + this.imeKampa);
+        System.out.println("Oddaljenost od morja: " + Long.toString(this.oddaljenostOdMorja));
     }
 
     // Getters and setters

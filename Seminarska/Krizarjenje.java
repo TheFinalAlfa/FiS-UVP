@@ -104,6 +104,16 @@ public class Krizarjenje extends Pocitnice {
         }
     }
 
+    @Override
+    public void printPure(boolean isAdmin){
+        super.printPure(isAdmin);
+        System.out.println("Ime ladje: " + this.imeLadje);
+        System.out.println("Pristanisca:");
+        for (String pristanisce : this.pristanisca){
+            System.out.println("    " + pristanisce);
+        }
+    }
+
     // Getters and setters
 
     public void setImeLadje(String imeLadje) {

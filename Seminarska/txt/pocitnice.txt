@@ -1,3 +1,0 @@
-Krizarjenje;30;Au;500;;Lepotica;Ljubljana~Jesenice~Ptuj~Maribor~Novo mesto~
-Kampiranje;1000;It;300;;Lepograd;2
-Potovanje;9;Slo;200;;Gargamel;2000

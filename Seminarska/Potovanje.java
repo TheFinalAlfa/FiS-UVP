@@ -45,21 +45,33 @@ public class Potovanje extends Pocitnice {
 
     @Override
     public boolean spremeni(String string, BufferedReader bis) throws Exception{
-        switch (string) {
-            case "v":{
-                System.out.println("Vnesite ime novega vodica");
-                this.vodic = bis.readLine();
-            }
+        if (super.spremeni(string, bis)){
             return true;
-            case "t":{
-                System.out.println("Vnesite novo dolžino poti v KM");
-                this.steviloKM = Integer.parseInt(bis.readLine());
-            }
-            return true;
-            default:{
-                return false;
+        }
+        else{
+            switch (string) {
+                case "v":{
+                    System.out.println("Vnesite ime novega vodica");
+                    this.vodic = bis.readLine();
+                }
+                return true;
+                case "t":{
+                    System.out.println("Vnesite novo dolžino poti v KM");
+                    this.steviloKM = Integer.parseInt(bis.readLine());
+                }
+                return true;
+                default:{
+                    return false;
+                }
             }
         }
+    }
+
+    @Override
+    public void printPure(boolean isAdmin){
+        super.printPure(isAdmin);
+        System.out.println("Ime vodica: " + this.vodic);
+        System.out.println("Stevilo kilometrov: " + Integer.toString(this.steviloKM));
     }
 
     // Getters and setters
