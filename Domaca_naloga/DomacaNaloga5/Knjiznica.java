@@ -28,8 +28,7 @@ public class Knjiznica {
 	public void izposodiGradivo() {
 		boolean izposojeno = false;
 		boolean najdeno = false;
-		InputStreamReader isr = new InputStreamReader(System.in);
-		BufferedReader br = new BufferedReader(isr);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Vnesite naslov knjige za izposojo:");
 		try {
 			String naslov = br.readLine();
@@ -72,16 +71,16 @@ public class Knjiznica {
 		boolean vrnjeno = false;
 		boolean najdeno = false;
 		try {
-			InputStreamReader isr = new InputStreamReader(System.in);
-			BufferedReader br = new BufferedReader(isr);
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Vnesite naslov knjige za izposojo:");
-			String naslov = br.readLine(); 
+			String naslov = br.readLine();
 			for(Gradivo gradivo : this.seznamGradiv) {
 				if(gradivo.getNaslov().equals(naslov)) {
 					System.out.println();
 					System.out.println("Vnesite stevilko izvoda knjige:");
 					int stevilkaIzvoda = Integer.parseInt(br.readLine());
-					Status status = gradivo.getSeznamStatusov().get(stevilkaIzvoda - 1);
+					System.out.println();
+					Status status = gradivo.getSeznamStatusov().get(stevilkaIzvoda);
 					if (!status.getJeProsto()) {
 						status.setJeProsto(true);
 						status.setDanIzposoje(0);
